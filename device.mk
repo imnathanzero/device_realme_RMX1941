@@ -22,13 +22,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 # IMS
 $(call inherit-product, vendor/realme/RMX1941-ims/RMX1941-ims.mk)
 
-# Dynamic Partition
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/flash_super_dummy.sh:install/bin/flash_super_dummy.sh
-
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 28
 
@@ -113,10 +106,6 @@ PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-service \
     android.hardware.memtrack@1.0.vendor
 
-# Fastbootd
-PRODUCT_PACKAGES += \
-    fastbootd
-
 # Gatekeeper
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
@@ -157,6 +146,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
     android.hardware.keymaster@3.0-service
+
+PRODUCT_PACKAGES += \
+    libkeymaster3.vendor \
+    libkeymaster3support.vendor
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -228,12 +221,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml
 
-# Lineage Charger
-WITH_LINEAGE_CHARGER := true
-
 # Power
 PRODUCT_PACKAGES += \
     android.hardware.power@1.3.vendor
+
+# Freeform Multiwindow
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.freeform_window_management.xml
 
 # Protobuf
 PRODUCT_PACKAGES += \
@@ -270,6 +264,10 @@ PRODUCT_PACKAGES += \
     fstab.mt6765 \
     fstab.mt6765.ramdisk \
     ueventd.mt6765.rc
+
+# Recovery
+PRODUCT_PACKAGES += \
+    init.recovery.mt6765.rc
 
 # Realme
 PRODUCT_PACKAGES += \

@@ -1,0 +1,5 @@
+# Privapp permissions whitelisting
+ro.control_privapp_permissions=log
+
+# One Handed Mode
+ro.support_one_handed_mode=true 
